@@ -1,17 +1,5 @@
 # Week 2
 
-### Grading
-
-Task #|Points|Description|
------|:---:|----------|
-Task 1 | 1 | Browsers and Banking Security ***or*** Certifcates
-Task 2 | 1 | Cards and Payments
-Task 3 | 1 | Card Fraud
-Task 4 | 1 | Non-technical Alternative 
-Task 4 | 2 | Subdomain Takeover 
-
----
-
 # Tasks
 
 ### Task 1: Choose A ***or*** B
@@ -31,13 +19,29 @@ Look at the following snippets from a browsers address bar:
 **Questions:**
 
 - What does the "Not Secure" warning mean in the first picture and what risks does visiting sites with the warning pose?
-- Why does the second site show up as "trusted" to the browser?
-- What other ways are there to detect a phishing/scam site? 
-    - Are there any tools available online?
-- What is typosquatting and how does it relate to the pictures?
-    - What is **UDRP** and how does it help with combatting typosquatting?
-    - If you were to own the domain **ouspg.org** and would be running your crypto banking application at **bank.ouspg.org**, what domains could you monitor for warning signs of possible phishing attempts against your customers?
+    It means that the site is not using HTTPS connection and is using HTTP connection instead. On going traffic is not secured by standard encryption and
+    things such as passwords can be leaked if someone is capturing traffic
 
+- Why does the second site show up as "trusted" to the browser?
+    This site is using private connection. Meaning anything you get or send from the site is private. 
+- What other ways are there to detect a phishing/scam site? 
+    Usually URLs are sketchy. Containing special letters, which redirects to different address.
+    - Are there any tools available online?
+        There are multiple tools able to trackdown phising sites.
+        Most of these tools do analyze visited site from any kind of common phising attempt.
+- What is typosquatting and how does it relate to the pictures?
+    Typosquatting is social engineering attack which uses link to seemingly common site, but includes typo in URL.
+
+    - What is **UDRP** and how does it help with combatting typosquatting?
+        Uniform Domain-Name Dispute-Resolution Policy
+        Sites following the policy are able to make complaint about potentially confusing or similiar url.
+        If complaint succeeds, the site will be taken down
+    - If you were to own the domain **ouspg.org** and would be running your crypto banking application at **bank.ouspg.org**, what domains could you monitor for warning signs of possible phishing attempts against your customers?
+        -Any top level domains such as .com and .net.
+        -any sites which can be confused to original site.
+        -Sites which do not have interests for specific name
+        -Domain names that are used in bad faith.
+        
 
 #### Task 1B: Certificates
 
@@ -48,11 +52,18 @@ You have probably seen the following kind of warning when browsing the internet:
 **Questions:**
 
 - What are digital certificates used for?
+    To provide user information if site is using cryptography and Public key infrastrucute and authenticity of the server.
     - Why are certificates important for online payments and banking security?
+        -It provides safety for clients and the service.
     - What other uses do certificates have?
+        -In emails and hardware
 - What kind of attacks does TLS mitigate and why is this important for online banking?
+    -Communication security over computer network.  
+    -It does not allow connected third party systems to interfere.
 - How do browsers use certificates for ensuring browsing security?
+    They are inspecting if site has correct/required certificates and informs user if there is something suspicious going on.
     - What does the warning in the picture above mean?
+        It means that site you are about to enter does not have certificates required by browser and continuing to the site could be dangerous.
 
 **Certificate Authorities**
 
@@ -66,7 +77,9 @@ https://www.ecb.europa.eu/pub/pubbydate/html/index.en.html
 **Questions:**
 
 - Why would it be bad if a trusted certificate authority was compromised?
+    If CA is compromised. Security to enterie system is lost.
 - Why is certificate transparency important?
+    Binds public cryptographic key to a domain name.
 
 ---
 
@@ -81,18 +94,37 @@ https://en.wikipedia.org/wiki/Multi-factor_authentication
 **Questions: Payments**
 
 - Why do modern payment cards use a chip and not a magnetic stripe?
+    Magnetic stripe can be manipulated. Magnetic stips stores static account information. While never EMV cards do not,
+    this gives another level of security. 
 - What are EMV Certificates and why are they relevant for payment protection?
+    EMV Certificate authority gives digital certificate to payment card.
+    Public key certificate and SSAD
+    This process allows issuer to verify that card is actually legit.
 - What attacks exist against payment cards?
     - Card-not-present?
+        Online payment fraud
+        Credit card information stealing, js sniffing attacks
     - Contactless payment?
+        Devices such as flipper zero can be easily modified to send and receive data from contactless payment cards.
+        Securing your cards specific card cases can be used to block unwanted signals.
 
 **Questions: MFA**
 
 - How is multi-factor authentication (MFA) used in banking?
+    Banks do use multi-factor authentication to verify legimacy of the user.
+    Physical code tables are exists and banks have mostly moved to digital verification. Including SMS and apllications
 - How does multi-factor authentication increase payment security?
+    If credit card information is stolen. It does not automatically mean that card can be used in order to purchase anything. Since user
+    still have posession of authenticaton devices.
 - What MFA methods are you using in you daily life?
+    -Fingerprint on phone and phone applications.
+    -Location on google accounts
+    -Posession on most of the accounts used.
+    -Knowledge. Every account is protected by unique passwords.
 - What attacks exists against different forms of 2FA?
     - Time-based-one-time-password?
+        Bypassing active session.
+        Social engineering. Tricking user to provide one time password
     - Text Message?
 
 ---
